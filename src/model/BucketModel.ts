@@ -37,9 +37,7 @@ const TelemetryBucketSchema = new Schema<ITelemetryBucket>({
   lastTs: { type: Date },
 });
 
-// Compound index — this is what you'll prove is <5ms at Mid-Project Review
 TelemetryBucketSchema.index({ vehicleId: 1, hourBucket: 1 }, { unique: true });
-// For map-viewport time-range queries
 TelemetryBucketSchema.index({ hourBucket: -1 });
 
 export const TelemetryBucket = mongoose.model<ITelemetryBucket>(
