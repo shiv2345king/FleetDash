@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ingestTelemetry } from "../controllers/telementry.controller.ts";
+import { ingestTelemetry } from "../controllers/telementry.controller";
 
 const router = Router();
 router.post("/ingest", ingestTelemetry);

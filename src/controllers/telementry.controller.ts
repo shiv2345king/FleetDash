@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ingestionPool } from "../workers/workerPool";
-import { TelemetryBucket } from "../model/BucketModel.ts";
+import { TelemetryBucket } from "../model/BucketModel";
 
 export async function ingestTelemetry(req: Request, res: Response) {
   const payloads = Array.isArray(req.body) ? req.body : [req.body];

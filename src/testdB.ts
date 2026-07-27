@@ -1,6 +1,6 @@
 
 import dotenv from "dotenv";
-import { dbConnect } from "./db/dbConnect.ts";
+import { dbConnect } from "./db/dbConnect";
 const result = dotenv.config();
 console.log(result);
 async function testDBConnection() {
