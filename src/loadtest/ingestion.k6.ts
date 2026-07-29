@@ -10,11 +10,10 @@ export const options = {
       preAllocatedVUs: 200,
       maxVUs: 500,
       stages: [
-        { target: 500, duration: '20s' },
-        { target: 2000, duration: '30s' },
-        { target: 2000, duration: '30s' },
-        { target: 0, duration: '10s' },
-      ],
+  { target: 300, duration: '10s' },
+  { target: 300, duration: '15s' },
+  { target: 0, duration: '5s' },
+],
     },
   },
 };

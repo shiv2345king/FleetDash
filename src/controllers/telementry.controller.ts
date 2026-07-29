@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ingestionPool } from "../workers/workerPool";
 import { TelemetryBucket } from "../model/BucketModel";
+import { redisPublisher, TELEMETRY_CHANNEL } from "../config/redis";
 
 export async function ingestTelemetry(req: Request, res: Response) {
   const payloads = Array.isArray(req.body) ? req.body : [req.body];
@@ -23,6 +24,22 @@ export async function ingestTelemetry(req: Request, res: Response) {
     }));
 
     await TelemetryBucket.bulkWrite(bulkOps, { ordered: false });
+
+    // Publish each reading to Redis for the Socket.io layer to pick up and broadcast
+    for (const p of processed) {
+      redisPublisher.publish(
+        TELEMETRY_CHANNEL,
+        JSON.stringify({
+          vehicleId: p.vehicleId,
+          lat: p.reading.lat,
+          lng: p.reading.lng,
+          speed: p.reading.speed,
+          heading: p.reading.heading,
+          ts: new Date(p.reading.ts).getTime(),
+        })
+      );
+    }
+
     res.status(200).json({ ingested: processed.length });
   } catch (err) {
     console.error("Ingestion error:", err);

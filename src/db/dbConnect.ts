@@ -17,7 +17,10 @@ export async function dbConnect() {
     }
 
     try {
-        const db = await mongoose.connect(process.env.MONGODB_URL as string);
+        const db = await mongoose.connect(process.env.MONGODB_URL as string, {
+  maxPoolSize: 50,
+  minPoolSize: 10,
+});
         connection.isConnected = db.connections[0].readyState;
         console.log("=> New database connection established");
     } catch (err) {
