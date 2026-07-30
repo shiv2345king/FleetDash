@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Vehicle, GeofenceAlert, GeofenceZone } from '../types/Fleet';
 
-const TOTAL_VEHICLES = 5000;
+const TOTAL_VEHICLES = 2650;
 const MIN_LAT = 37.70, MAX_LAT = 37.82;
 const MIN_LNG = -122.52, MAX_LNG = -122.35;
 
