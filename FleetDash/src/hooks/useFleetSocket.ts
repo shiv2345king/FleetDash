@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import type { Vehicle, GeofenceAlert, TelemetryPayload } from '../types/Fleet';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:4000';
 
 // Demo simulation helpers — generates realistic fleet data when no backend is available
 const DEMO_VEHICLE_COUNT = 48;
