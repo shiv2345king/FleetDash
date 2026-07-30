@@ -1,6 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { useFleetSocket } from './hooks/useFleetSocket';
+// src/App.tsx
+import { useFleetTelemetry } from './hooks/useFleetTelemetry';
 import { FleetMapCanvas } from './components/FleetMapCanvas';
 import { DashboardHeader } from './components/DashboardHeader';
 import { AlertBanner } from './components/AlertBanner';
@@ -16,15 +15,7 @@ const SAMPLE_GEOFENCE: GeofenceZone = {
 };
 
 export function App() {
-  const { vehiclesRef, alerts, isConnected } = useFleetSocket();
-  const [vehicleCount, setVehicleCount] = useState<number>(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVehicleCount(vehiclesRef.current.size);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [vehiclesRef]);
+  const { telemetryBufferRef, activeCount, alerts } = useFleetTelemetry(SAMPLE_GEOFENCE);
 
   return (
     <div
@@ -39,11 +30,11 @@ export function App() {
         padding: 0,
       }}
     >
-      <DashboardHeader isConnected={isConnected} activeCount={vehicleCount} />
-      
+      <DashboardHeader isConnected={true} activeCount={activeCount} />
+
       <div style={{ position: 'relative', flex: 1, width: '100%' }}>
         <AlertBanner alerts={alerts} />
-        <FleetMapCanvas vehiclesRef={vehiclesRef} geofence={SAMPLE_GEOFENCE} />
+        <FleetMapCanvas telemetryBufferRef={telemetryBufferRef} geofence={SAMPLE_GEOFENCE} />
       </div>
     </div>
   );
