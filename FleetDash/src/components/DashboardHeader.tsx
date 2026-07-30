@@ -1,4 +1,3 @@
-// src/components/DashboardHeader.tsx
 import React from 'react';
 
 interface HeaderProps {

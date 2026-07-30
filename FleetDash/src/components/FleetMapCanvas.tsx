@@ -1,4 +1,3 @@
-// src/components/FleetMapCanvas.tsx
 import React, { useEffect, useRef } from 'react';
 import type{ Vehicle, GeofenceZone } from '../types/Fleet';
 import { CanvasFleetEngine } from '../engines/CanvasFleetEngine';
@@ -19,7 +18,6 @@ export const FleetMapCanvas: React.FC<FleetMapCanvasProps> = ({ telemetryBufferR
 
     const engine = new CanvasFleetEngine(canvas, telemetryBufferRef, geofence);
 
-    // Handles DPI scaling & smooth responsive canvas resizing
     const updateCanvasBounds = () => {
       const dpr = window.devicePixelRatio || 1;
       const width = container.clientWidth;
@@ -37,7 +35,6 @@ export const FleetMapCanvas: React.FC<FleetMapCanvasProps> = ({ telemetryBufferR
     updateCanvasBounds();
     engine.start();
 
-    // ResizeObserver prevents window freezing/lag on layout resizes
     const resizeObserver = new ResizeObserver(() => {
       updateCanvasBounds();
     });

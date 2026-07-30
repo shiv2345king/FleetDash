@@ -1,4 +1,3 @@
-// src/engines/CanvasFleetEngine.ts
 import type{ Vehicle, GeofenceZone } from '../types/Fleet';
 
 export class CanvasFleetEngine {
@@ -54,11 +53,9 @@ export class CanvasFleetEngine {
     const width = this.canvas.clientWidth;
     const height = this.canvas.clientHeight;
 
-    // 1. Clear Viewport Context
     this.ctx.fillStyle = '#0b0f19'; // Modern Ultra-Dark Slate
     this.ctx.fillRect(0, 0, width, height);
 
-    // 2. Render Grid Background for High-Tech UI Feel
     this.ctx.strokeStyle = 'rgba(51, 65, 85, 0.2)';
     this.ctx.lineWidth = 1;
     const gridSize = 60;
@@ -74,7 +71,6 @@ export class CanvasFleetEngine {
     }
     this.ctx.stroke();
 
-    // 3. Render Geofence Boundary
     const geoTopLeft = this.latLngToPixel(this.geofence.maxLat, this.geofence.minLng, width, height);
     const geoBottomRight = this.latLngToPixel(this.geofence.minLat, this.geofence.maxLng, width, height);
     const geoWidth = geoBottomRight.x - geoTopLeft.x;
@@ -93,7 +89,6 @@ export class CanvasFleetEngine {
     this.ctx.font = '600 11px system-ui, -apple-system, sans-serif';
     this.ctx.fillText(`ZONE: ${this.geofence.name.toUpperCase()}`, geoTopLeft.x + 8, geoTopLeft.y + 18);
 
-    // 4. OPTIMIZED BATCH DRAWING (Groups paths by status to reduce Context fill switching)
     const buffer = this.bufferRef.current;
     
     const activePaths: Array<{ x: number; y: number }> = [];
@@ -108,7 +103,6 @@ export class CanvasFleetEngine {
       }
     });
 
-    // Draw Active Vehicles Batch (Emerald)
     this.ctx.fillStyle = '#10b981';
     this.ctx.beginPath();
     for (let i = 0; i < activePaths.length; i++) {
@@ -118,7 +112,6 @@ export class CanvasFleetEngine {
     }
     this.ctx.fill();
 
-    // Draw Warning Vehicles Batch (Amber)
     this.ctx.fillStyle = '#f59e0b';
     this.ctx.beginPath();
     for (let i = 0; i < warningPaths.length; i++) {

@@ -5,13 +5,13 @@ import type { Vehicle, GeofenceAlert, TelemetryPayload } from '../types/Fleet';
 
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:4000';
 
-// Demo simulation helpers — generates realistic fleet data when no backend is available
+
 const DEMO_VEHICLE_COUNT = 48;
 const DEMO_VEHICLE_IDS = Array.from({ length: DEMO_VEHICLE_COUNT }, (_, i) => `V-${String(i + 1).padStart(3, '0')}`);
 const STATUSES: Vehicle['status'][] = ['active', 'active', 'active', 'active', 'idle', 'warning'];
 
 function createDemoVehicle(id: string, time: number): Vehicle {
-  // Simulate vehicles moving in the San Francisco bay area
+  
   const baseLat = 37.76 + (Math.random() - 0.5) * 0.08;
   const baseLng = -122.44 + (Math.random() - 0.5) * 0.10;
   return {
@@ -28,7 +28,7 @@ export function useFleetSocket() {
   const socketRef = useRef<Socket | null>(null);
   const demoIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   
-  // Mutable Ref to store vehicles without triggering heavy React re-renders
+  
   const vehiclesRef = useRef<Map<string, Vehicle>>(new Map());
   const alertCounterRef = useRef<number>(0);
   
@@ -51,7 +51,7 @@ export function useFleetSocket() {
       setIsConnected(false);
     });
 
-    // High-throughput telemetry event
+   
     socket.on('telemetry_batch', (payload: TelemetryPayload) => {
       for (let i = 0; i < payload.vehicles.length; i++) {
         const v = payload.vehicles[i];
@@ -63,7 +63,7 @@ export function useFleetSocket() {
       }
     });
 
-    // If connection fails, fall back to demo simulation after 3 seconds
+    
     const fallbackTimer = setTimeout(() => {
       if (!socket.connected) {
         socket.disconnect();

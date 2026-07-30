@@ -1,4 +1,3 @@
-// src/components/AlertBanner.tsx
 import React from 'react';
 import type{ GeofenceAlert } from '../types/Fleet';
 

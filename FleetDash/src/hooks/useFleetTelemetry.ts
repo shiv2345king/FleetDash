@@ -1,5 +1,4 @@
 
-// src/hooks/useFleetTelemetry.ts
 import { useEffect, useRef, useState } from 'react';
 import type { Vehicle, GeofenceAlert, GeofenceZone } from '../types/Fleet';
 
@@ -8,10 +7,8 @@ const MIN_LAT = 37.70, MAX_LAT = 37.82;
 const MIN_LNG = -122.52, MAX_LNG = -122.35;
 
 export function useFleetTelemetry(geofence: GeofenceZone) {
-  // UNCONTROLLED BUFFER: Mutated directly at high-frequency without triggering re-renders
   const telemetryBufferRef = useRef<Map<string, Vehicle>>(new Map());
   
-  // CONTROLLED REACT STATE: Driven by throttled updates for static/low-frequency UI
   const [alerts, setAlerts] = useState<GeofenceAlert[]>([]);
   const [activeCount, setActiveCount] = useState<number>(0);
 
@@ -71,7 +68,6 @@ export function useFleetTelemetry(geofence: GeofenceZone) {
     return () => clearInterval(updateInterval);
   }, [geofence]);
 
-  // Decoupled low-frequency state synchronization (1 Hz refresh for header counts)
   useEffect(() => {
     const syncInterval = setInterval(() => {
       setActiveCount(telemetryBufferRef.current.size);

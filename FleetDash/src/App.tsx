@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useFleetTelemetry } from './hooks/useFleetTelemetry';
 import { FleetMapCanvas } from './components/FleetMapCanvas';
 import { DashboardHeader } from './components/DashboardHeader';
