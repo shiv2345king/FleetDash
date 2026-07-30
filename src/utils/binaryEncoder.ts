@@ -1,10 +1,3 @@
-// Fixed layout, 48 bytes total per reading:
-// [0-16)  vehicleId  - 16 bytes UTF-8, padded/truncated
-// [16-24) lat        - 8 bytes float64
-// [24-32) lng        - 8 bytes float64
-// [32-36) speed      - 4 bytes float32
-// [36-40) heading    - 4 bytes float32
-// [40-48) ts         - 8 bytes float64 (epoch millis)
 
 const VEHICLE_ID_BYTES = 16;
 const RECORD_SIZE = 48;
