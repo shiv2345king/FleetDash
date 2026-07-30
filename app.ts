@@ -10,5 +10,7 @@ app.use(express.json({ limit: "5mb" }));
 app.use("/api/telemetry", telemetryRoutes);
 
 app.get("/health", (_req, res) => res.json({ status: "ok" }));
+import geofenceRoutes from "./src/routes/geofence.routes";
+app.use("/api/geofence", geofenceRoutes);
 
 export { app };

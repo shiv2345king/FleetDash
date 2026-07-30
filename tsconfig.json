@@ -7,10 +7,10 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "./",
     "resolveJsonModule": true,
-    "types": ["node"]
+    "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts", "test-Client.ts"],
+  "include": ["src/**/*.ts", "test-Client.ts", "test-explain.ts"],
   "exclude": ["node_modules", "dist", "src/loadtest/**/*.ts"]
 }
