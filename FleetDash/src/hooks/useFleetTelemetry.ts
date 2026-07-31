@@ -12,7 +12,7 @@ export function useFleetTelemetry(geofence: GeofenceZone) {
   const [alerts, setAlerts] = useState<GeofenceAlert[]>([]);
   const [activeCount, setActiveCount] = useState<number>(0);
 
-  // Initialize raw telemetry buffer in memory
+  // Initialize raw telemetry buffer
   useEffect(() => {
     const buffer = telemetryBufferRef.current;
     for (let i = 0; i < TOTAL_VEHICLES; i++) {
