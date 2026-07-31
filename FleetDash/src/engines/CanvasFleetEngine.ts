@@ -247,7 +247,7 @@ export class CanvasFleetEngine {
     ctx.font = '500 9px system-ui, -apple-system, sans-serif';
     ctx.fillText('HIGH-THROUGHPUT EVENT-DRIVEN TELEMETRY ENGINE', hudX, hudY + 48);
 
-    // --- Top-right system info ---
+    // --- Top-right system info --- //
     ctx.fillStyle = 'rgba(15, 23, 42, 0.5)';
     ctx.beginPath();
     ctx.roundRect(width - 170, 16, 154, 24, 6);
