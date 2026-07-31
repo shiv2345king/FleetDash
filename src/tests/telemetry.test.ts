@@ -4,13 +4,14 @@ import mongoose from "mongoose";
 import { dbConnect } from "../db/dbConnect";
 import { redisPublisher, redisSubscriber } from "../config/redis";
 import { ingestionPool } from "../workers/workerPool";
+import { pendingGeofenceChecks } from "../controllers/telementry.controller";
 
 beforeAll(async () => {
   await dbConnect();
 });
 
 afterAll(async () => {
-  await new Promise((resolve) => setTimeout(resolve, 500)); // let any pending async ops (geofence check) finish
+  await Promise.allSettled([...pendingGeofenceChecks]);
   await ingestionPool.destroy();
   await redisPublisher.quit();
   await redisSubscriber.quit();
