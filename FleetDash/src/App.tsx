@@ -132,10 +132,10 @@ export function App() {
           activeCount={activeCount}
           onLogout={handleLogout}
         />
-
+       {/* // Render the main content area based on the active view */}
         <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
           {renderMainContent()}
-        </div>
+        </div> 
 </div>
 
       <StatsBar activeCount={activeCount} isConnected={true} />
