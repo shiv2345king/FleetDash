@@ -30,3 +30,12 @@ html, body, #root {
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
+/* Global Keyframe Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 4px #10b981, 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 8px #10b981, 0 0 20px rgba(16, 185, 129, 0.5);
+  }
+}
