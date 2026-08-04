@@ -49,3 +49,13 @@ html, body, #root {
     transform: scale(1.3);
   }
 }
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
