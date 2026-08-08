@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Vehicle, GeofenceAlert, GeofenceZone } from '../types/Fleet';
 
-const TOTAL_VEHICLES = 2650;
+const TOTAL_VEHICLES = 1250;
 const MIN_LAT = 37.70, MAX_LAT = 37.82;
 const MIN_LNG = -122.52, MAX_LNG = -122.35;
 
@@ -28,7 +28,6 @@ export function useFleetTelemetry(geofence: GeofenceZone) {
     }
   }, []);
 
-  // High-frequency simulation update loop (~60 updates/sec)
   useEffect(() => {
     const updateInterval = setInterval(() => {
       const buffer = telemetryBufferRef.current;
@@ -36,11 +35,9 @@ export function useFleetTelemetry(geofence: GeofenceZone) {
       const newAlerts: GeofenceAlert[] = [];
 
       buffer.forEach((vehicle) => {
-        // Apply coordinate delta
         const newLat = Math.min(MAX_LAT, Math.max(MIN_LAT, vehicle.lat + (Math.random() - 0.5) * 0.0008));
         const newLng = Math.min(MAX_LNG, Math.max(MIN_LNG, vehicle.lng + (Math.random() - 0.5) * 0.0008));
 
-        // Check Geofence breach
         const isInside =
           newLat >= geofence.minLat && newLat <= geofence.maxLat &&
           newLng >= geofence.minLng && newLng <= geofence.maxLng;
@@ -54,7 +51,6 @@ export function useFleetTelemetry(geofence: GeofenceZone) {
           });
         }
 
-        // Direct Ref Mutation - No React set state called here
         vehicle.lat = newLat;
         vehicle.lng = newLng;
         vehicle.lastUpdated = now;

@@ -1,7 +1,6 @@
-// App.tsx
 import { useState, useEffect } from 'react';
 import { useFleetTelemetry } from './hooks/useFleetTelemetry';
-import { FleetMapCanvas } from './components/FleetMapCanvas';
+import { WorldMapView } from './components/WorldMapView';
 import { DashboardHeader } from './components/DashboardHeader';
 import { AlertBanner } from './components/AlertBanner';
 import { StatsBar } from './components/StatsBar';
@@ -92,7 +91,7 @@ export function App() {
         return (
           <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             <AlertBanner alerts={alerts} />
-            <FleetMapCanvas telemetryBufferRef={telemetryBufferRef} geofence={SAMPLE_GEOFENCE} />
+            <WorldMapView telemetryBufferRef={telemetryBufferRef} geofence={SAMPLE_GEOFENCE} />
           </div>
         );
       case 'geofence':
