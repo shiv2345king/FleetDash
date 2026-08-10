@@ -22,7 +22,7 @@ export function initSocketServer(httpServer: HTTPServer) {
     });
   });
 
-  // Subscribe to telemetry AND alert channels
+  // Subscribed to the channels
   redisSubscriber.subscribe(
     TELEMETRY_CHANNEL,
     ALERT_CHANNEL,
