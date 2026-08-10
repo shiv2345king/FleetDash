@@ -11,6 +11,6 @@
     "resolveJsonModule": true,
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts", "test-Client.ts", "test-explain.ts"],
+  "include": ["src/**/*.ts", "test-Client.ts", "test-explain.ts", "app.ts"],
   "exclude": ["node_modules", "dist", "src/loadtest/**/*.ts"]
 }

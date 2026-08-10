@@ -2,12 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main, shivam,frontend]
+    branches: [main, shivam, frontend]
   pull_request:
     branches: [main]
 
 jobs:
-  test:
+  backend:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/shivam'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,3 +21,14 @@ jobs:
         env:
           MONGODB_URL: ${{ secrets.MONGODB_URL }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
+
+  frontend:
+    if: github.ref == 'refs/heads/frontend'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build
