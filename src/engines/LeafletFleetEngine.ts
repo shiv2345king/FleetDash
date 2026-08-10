@@ -93,7 +93,7 @@ export class LeafletFleetEngine {
 
     buffer.forEach((vehicle) => {
       seenIds.add(vehicle.id);
-      const color = vehicle.status === 'critical' ? '#ef4444'   // red — inside the zone
+      const color = vehicle.status === 'critical' ? '#ef4444'   // red — inside the zone 
         : vehicle.status === 'warning' ? '#f59e0b'                // yellow — approaching
         : vehicle.status === 'active' ? '#10b981'                 // green — safely outside
         : '#64748b';                                              // idle — gray
